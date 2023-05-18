@@ -552,19 +552,19 @@ int chessboard::Black_horse(int ox, int oy, int nx, int ny)
 }
 
 
-int chessboard::White_pawn_check(int posx, int posy, int regex, int regey)
+int chessboard::White_pawn_check(int posx, int posy, int destx, int desty)
 {
-	//std::cout << "ox=" << posx << " oy=" << posy << " regex=" << regex << " regey=" << regey << "\n\n\n";
+	//std::cout << "ox=" << posx << " oy=" << posy << " destx=" << destx << " desty=" << desty << "\n\n\n";
 	if (this->board[posy - 1][posx - 1] >= 0)
 	{
-		if (posy-1 == regey && posx - 1 == regex)
+		if (posy-1 == desty && posx - 1 == destx)
 		{
 			return 1;
 		}
 	}
 	if (this->board[posy - 1][posx + 1] >= 0)
 	{
-		if (posy - 1 == regey && posx + 1==regex)
+		if (posy - 1 == desty && posx + 1==destx)
 		{
 			return 1;
 		}
@@ -572,11 +572,11 @@ int chessboard::White_pawn_check(int posx, int posy, int regex, int regey)
 	return 0;
 }
 
-int chessboard::White_rook_check(int ox, int oy, int regex, int regey)
+int chessboard::White_rook_check(int ox, int oy, int destx, int desty)
 {
 	for (int i = ox - 1; i >= 0; i--) 
 	{
-		if (this->board[oy][i] >= 0 && (regex== i && regey == oy))
+		if (this->board[oy][i] >= 0 && (destx== i && desty == oy))
 		{
 			return 1;
 		}
@@ -587,7 +587,7 @@ int chessboard::White_rook_check(int ox, int oy, int regex, int regey)
 	}
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][ox] >= 0 && (regey == i && regex == ox))
+		if (this->board[i][ox] >= 0 && (desty == i && destx == ox))
 		{
 			return 1;
 		}
@@ -598,7 +598,7 @@ int chessboard::White_rook_check(int ox, int oy, int regex, int regey)
 	}
 	for (int i = ox + 1; i < 8; i++)
 	{
-		if (this->board[oy][i] >= 0 && (regey == oy && regex == i))
+		if (this->board[oy][i] >= 0 && (desty == oy && destx == i))
 		{
 			return 1;
 		}
@@ -609,7 +609,7 @@ int chessboard::White_rook_check(int ox, int oy, int regex, int regey)
 	}
 	for (int i = oy + 1; i < 8; i++)
 	{
-		if (this->board[i][ox] >= 0 && (regey == i && regex == ox))
+		if (this->board[i][ox] >= 0 && (desty == i && destx == ox))
 		{
 			return 1;
 		}
@@ -621,12 +621,12 @@ int chessboard::White_rook_check(int ox, int oy, int regex, int regey)
 	return 0;
 }
 
-int chessboard::Black_elephant_check(int ox, int oy, int regex, int regey)
+int chessboard::Black_elephant_check(int ox, int oy, int destx, int desty)
 {
 	int j = ox - 1;
 	for (int i = oy - 1; i >= 0; i--) 
 	{
-		if (this->board[i][j] >= 0 && (regey == i && regex == j))
+		if (this->board[i][j] >= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -639,7 +639,7 @@ int chessboard::Black_elephant_check(int ox, int oy, int regex, int regey)
 	j = ox + 1;
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][j] >= 0 && (regey == i && regex == j))
+		if (this->board[i][j] >= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -652,7 +652,7 @@ int chessboard::Black_elephant_check(int ox, int oy, int regex, int regey)
 	j = ox - 1;
 	for (int i = oy + 1; i <= 7; i++)
 	{
-		if (this->board[i][j] >= 0 && (regey == i && regex == j))
+		if (this->board[i][j] >= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -665,7 +665,7 @@ int chessboard::Black_elephant_check(int ox, int oy, int regex, int regey)
 	j = ox + 1;
 	for (int i = oy + 1; i <= 7; i++)
 	{
-		if (this->board[i][j] >= 0 && (regey == i && regex == j))
+		if (this->board[i][j] >= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -678,11 +678,11 @@ int chessboard::Black_elephant_check(int ox, int oy, int regex, int regey)
 	return 0;
 }
 
-int chessboard::White_queen_check(int ox, int oy, int regex, int regey)
+int chessboard::White_queen_check(int ox, int oy, int destx, int desty)
 {
 	for (int i = ox - 1; i >= 0; i--)
 	{
-		if (this->board[oy][i] >= 0 && (regex == i && regey == oy))
+		if (this->board[oy][i] >= 0 && (destx == i && desty == oy))
 		{
 			return 1;
 		}
@@ -693,7 +693,7 @@ int chessboard::White_queen_check(int ox, int oy, int regex, int regey)
 	}
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][ox] >= 0 && (regey == i && regex == ox))
+		if (this->board[i][ox] >= 0 && (desty == i && destx == ox))
 		{
 			return 1;
 		}
@@ -704,7 +704,7 @@ int chessboard::White_queen_check(int ox, int oy, int regex, int regey)
 	}
 	for (int i = ox + 1; i < 8; i++)
 	{
-		if (this->board[oy][i] >= 0 && (regey == oy && regex == i))
+		if (this->board[oy][i] >= 0 && (desty == oy && destx == i))
 		{
 			return 1;
 		}
@@ -715,7 +715,7 @@ int chessboard::White_queen_check(int ox, int oy, int regex, int regey)
 	}
 	for (int i = oy + 1; i < 8; i++)
 	{
-		if (this->board[i][ox] >= 0 && (regey == i && regex == ox))
+		if (this->board[i][ox] >= 0 && (desty == i && destx == ox))
 		{
 			return 1;
 		}
@@ -727,7 +727,7 @@ int chessboard::White_queen_check(int ox, int oy, int regex, int regey)
 	int j = ox - 1;
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][j] >= 0 && (regey == i && regex == j))
+		if (this->board[i][j] >= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -740,7 +740,7 @@ int chessboard::White_queen_check(int ox, int oy, int regex, int regey)
 	j = ox + 1;
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][j] >= 0 && (regey == i && regex == j))
+		if (this->board[i][j] >= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -753,7 +753,7 @@ int chessboard::White_queen_check(int ox, int oy, int regex, int regey)
 	j = ox - 1;
 	for (int i = oy + 1; i <= 7; i++)
 	{
-		if (this->board[i][j] >= 0 && (regey == i && regex == j))
+		if (this->board[i][j] >= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -766,7 +766,7 @@ int chessboard::White_queen_check(int ox, int oy, int regex, int regey)
 	j = ox + 1;
 	for (int i = oy + 1; i < 8; i++)
 	{
-		if (this->board[i][j] >= 0 && (regey == i && regex == j))
+		if (this->board[i][j] >= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -779,74 +779,74 @@ int chessboard::White_queen_check(int ox, int oy, int regex, int regey)
 	return 0;
 }
 
-int chessboard::White_elephant_check(int ox, int oy, int regex, int regey)
+int chessboard::White_elephant_check(int ox, int oy, int destx, int desty)
 {
-	if (oy - 2 >= 0 && ox - 1 >= 0 && regey == oy - 2 && regex == ox - 1 && this->board[regey][regex] >= 0)
+	if (oy - 2 >= 0 && ox - 1 >= 0 && desty == oy - 2 && destx == ox - 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (oy - 2 >= 0 && ox + 1 < 8 && regey == oy - 2 && regex == ox + 1 && this->board[regey][regex] >= 0)
+	if (oy - 2 >= 0 && ox + 1 < 8 && desty == oy - 2 && destx == ox + 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (oy - 1 >= 0 && ox + 2 < 8 && regey == oy - 1 && regex == ox + 2 && this->board[regey][regex] >= 0)
+	if (oy - 1 >= 0 && ox + 2 < 8 && desty == oy - 1 && destx == ox + 2 && this->board[desty][destx] >= 0)
 	{
 		return 1; 
 	}
-	if (oy + 1 >= 0 && ox + 2 < 8 && regey == oy + 1 && regex == ox + 2 && this->board[regey][regex] >= 0)
+	if (oy + 1 >= 0 && ox + 2 < 8 && desty == oy + 1 && destx == ox + 2 && this->board[desty][destx] >= 0)
 	{
 		return 1; 
 	}
-	if (oy + 2 < 8 && ox + 1 < 8 && regey == oy + 2 && regex == ox + 1 && this->board[regey][regex] >= 0)
+	if (oy + 2 < 8 && ox + 1 < 8 && desty == oy + 2 && destx == ox + 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (oy + 2 < 8 && ox - 1 >= 0 && regey == oy + 2 && regex == ox - 1 && this->board[regey][regex] >= 0)
+	if (oy + 2 < 8 && ox - 1 >= 0 && desty == oy + 2 && destx == ox - 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (oy + 1 < 8 && ox - 2 >= 0 && regey == oy + 1 && regex == ox - 2 && this->board[regey][regex] >= 0)
+	if (oy + 1 < 8 && ox - 2 >= 0 && desty == oy + 1 && destx == ox - 2 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (oy - 1 >= 0 && ox - 2 >= 0 && regey == oy - 1 && regex == ox - 2 && this->board[regey][regex] >= 0)
+	if (oy - 1 >= 0 && ox - 2 >= 0 && desty == oy - 1 && destx == ox - 2 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
 	return 0;
 }
 
-int chessboard::White_king_check(int ox, int oy, int regex, int regey)
+int chessboard::White_king_check(int ox, int oy, int destx, int desty)
 {
-	if (ox - 1 >= 0 && oy - 1 >= 0 && regey == oy - 1 && regex == ox - 1 && this->board[regey][regex] <= 0)
+	if (ox - 1 >= 0 && oy - 1 >= 0 && desty == oy - 1 && destx == ox - 1 && this->board[desty][destx] <= 0)
 	{
 		return 1;
 	}
-	if (oy - 1 >= 0 && regex == ox && regey == oy - 1 && this->board[regey][regex] <= 0)
+	if (oy - 1 >= 0 && destx == ox && desty == oy - 1 && this->board[desty][destx] <= 0)
 	{
 		return 1;
 	}
-	if (oy - 1 >= 0 && ox + 1 < 8 && regex == ox + 1 && regey == oy - 1 && this->board[regey][regex] <= 0)
+	if (oy - 1 >= 0 && ox + 1 < 8 && destx == ox + 1 && desty == oy - 1 && this->board[desty][destx] <= 0)
 	{
 		return 1;
 	}
-	if (ox + 1 < 8 && regey == oy && regex == ox + 1 && this->board[regey][regex] <= 0)
+	if (ox + 1 < 8 && desty == oy && destx == ox + 1 && this->board[desty][destx] <= 0)
 	{
 		return 1;
 	}
-	if (ox + 1 < 8 && oy + 1 < 8 && regey == oy + 1 && regex == ox + 1 && this->board[regey][regex] <= 0)
+	if (ox + 1 < 8 && oy + 1 < 8 && desty == oy + 1 && destx == ox + 1 && this->board[desty][destx] <= 0)
 	{
 		return 1;
 	}
-	if (oy + 1 < 8 && regey == oy + 1 && regex == ox && this->board[regey][regex] <= 0)
+	if (oy + 1 < 8 && desty == oy + 1 && destx == ox && this->board[desty][destx] <= 0)
 	{
 		return 1;
 	}
-	if (ox - 1 >= 0 && oy + 1 < 8 && regex == ox - 1 && regey == oy + 1 && this->board[regey][regex] <= 0)
+	if (ox - 1 >= 0 && oy + 1 < 8 && destx == ox - 1 && desty == oy + 1 && this->board[desty][destx] <= 0)
 	{
 		return 1;
 	}
-	if (ox - 1 >= 0 && regey == oy && regex == ox - 1 && this->board[regey][regex] <= 0)
+	if (ox - 1 >= 0 && desty == oy && destx == ox - 1 && this->board[desty][destx] <= 0)
 	{
 		return 1;
 	}
@@ -854,18 +854,18 @@ int chessboard::White_king_check(int ox, int oy, int regex, int regey)
 }
 
 
-int chessboard::Black_pawn_check(int ox, int oy, int regex, int regey)
+int chessboard::Black_pawn_check(int ox, int oy, int destx, int desty)
 {
 	if (this->board[oy + 1][ox - 1] <= 0)
 	{
-		if (regey == oy + 1 && regex == ox - 1)
+		if (desty == oy + 1 && destx == ox - 1)
 		{
 			return 1;
 		}
 	}
 	if (this->board[oy + 1][ox + 1] <= 0)
 	{
-		if (regey == oy + 1 && regex == ox + 1)
+		if (desty == oy + 1 && destx == ox + 1)
 		{
 			return 1;
 		}
@@ -873,11 +873,11 @@ int chessboard::Black_pawn_check(int ox, int oy, int regex, int regey)
 	return 0;
 }
 
-int chessboard::Black_RookShah(int ox, int oy, int regex, int regey)
+int chessboard::Black_RookShah(int ox, int oy, int destx, int desty)
 {
 	for (int i = ox - 1; i >= 0; i--)
 	{
-		if (this->board[oy][i] <= 0 && (regex == i && regey == oy))
+		if (this->board[oy][i] <= 0 && (destx == i && desty == oy))
 		{
 			return 1;
 		}
@@ -888,7 +888,7 @@ int chessboard::Black_RookShah(int ox, int oy, int regex, int regey)
 	}
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][ox] <= 0 && (regey == i && regex == ox))
+		if (this->board[i][ox] <= 0 && (desty == i && destx == ox))
 		{
 			return 1;
 		}
@@ -899,7 +899,7 @@ int chessboard::Black_RookShah(int ox, int oy, int regex, int regey)
 	}
 	for (int i = ox + 1; i < 8; i++)
 	{
-		if (this->board[oy][i] <= 0 && (regey == oy && regex == i))
+		if (this->board[oy][i] <= 0 && (desty == oy && destx == i))
 		{
 			return 1;
 		}
@@ -910,7 +910,7 @@ int chessboard::Black_RookShah(int ox, int oy, int regex, int regey)
 	}
 	for (int i = oy + 1; i < 8; i++)
 	{
-		if (this->board[i][ox] <= 0 && (regey == i && regex == ox))
+		if (this->board[i][ox] <= 0 && (desty == i && destx == ox))
 		{
 			return 1;
 		}
@@ -922,12 +922,12 @@ int chessboard::Black_RookShah(int ox, int oy, int regex, int regey)
 	return 0;
 }
 
-int chessboard::Black_ElephantShah(int ox, int oy, int regex, int regey)
+int chessboard::Black_ElephantShah(int ox, int oy, int destx, int desty)
 {
 	int j = ox - 1;
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][j] <= 0 && (regey == i && regex == j))
+		if (this->board[i][j] <= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -940,7 +940,7 @@ int chessboard::Black_ElephantShah(int ox, int oy, int regex, int regey)
 	j = ox + 1;
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][j] <= 0 && (regey == i && regex == j))
+		if (this->board[i][j] <= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -953,7 +953,7 @@ int chessboard::Black_ElephantShah(int ox, int oy, int regex, int regey)
 	j = ox - 1;
 	for (int i = oy + 1; i <= 7; i++)
 	{
-		if (this->board[i][j] <= 0 && (regey == i && regex == j))
+		if (this->board[i][j] <= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -966,7 +966,7 @@ int chessboard::Black_ElephantShah(int ox, int oy, int regex, int regey)
 	j = ox + 1;
 	for (int i = oy + 1; i <= 7; i++)
 	{
-		if (this->board[i][j] <= 0 && (regey == i && regex == j))
+		if (this->board[i][j] <= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -979,11 +979,11 @@ int chessboard::Black_ElephantShah(int ox, int oy, int regex, int regey)
 	return 0;
 }
 
-int chessboard::Black_queen_check(int ox, int oy, int regex, int regey)
+int chessboard::Black_queen_check(int ox, int oy, int destx, int desty)
 {
 	for (int i = ox - 1; i >= 0; i--)
 	{
-		if (this->board[oy][i] <= 0 && (regex == i && regey == oy))
+		if (this->board[oy][i] <= 0 && (destx == i && desty == oy))
 		{
 			return 1;
 		}
@@ -994,7 +994,7 @@ int chessboard::Black_queen_check(int ox, int oy, int regex, int regey)
 	}
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][ox] <= 0 && (regey == i && regex == ox))
+		if (this->board[i][ox] <= 0 && (desty == i && destx == ox))
 		{
 			return 1;
 		}
@@ -1005,7 +1005,7 @@ int chessboard::Black_queen_check(int ox, int oy, int regex, int regey)
 	}
 	for (int i = ox + 1; i < 8; i++)
 	{
-		if (this->board[oy][i] <= 0 && (regey == oy && regex == i))
+		if (this->board[oy][i] <= 0 && (desty == oy && destx == i))
 		{
 			return 1;
 		}
@@ -1016,7 +1016,7 @@ int chessboard::Black_queen_check(int ox, int oy, int regex, int regey)
 	}
 	for (int i = oy + 1; i < 8; i++) 
 	{
-		if (this->board[i][ox] <= 0 && (regey == i && regex == ox))
+		if (this->board[i][ox] <= 0 && (desty == i && destx == ox))
 		{
 			return 1;
 		}
@@ -1028,7 +1028,7 @@ int chessboard::Black_queen_check(int ox, int oy, int regex, int regey)
 	int j = ox - 1;
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][j] <= 0 && (regey == i && regex == j))
+		if (this->board[i][j] <= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -1041,7 +1041,7 @@ int chessboard::Black_queen_check(int ox, int oy, int regex, int regey)
 	j = ox + 1;
 	for (int i = oy - 1; i >= 0; i--)
 	{
-		if (this->board[i][j] <= 0 && (regey == i && regex == j))
+		if (this->board[i][j] <= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -1054,7 +1054,7 @@ int chessboard::Black_queen_check(int ox, int oy, int regex, int regey)
 	j = ox - 1;
 	for (int i = oy + 1; i <= 7; i++) 
 	{
-		if (this->board[i][j] <= 0 && (regey == i && regex == j))
+		if (this->board[i][j] <= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -1067,7 +1067,7 @@ int chessboard::Black_queen_check(int ox, int oy, int regex, int regey)
 	j = ox + 1;
 	for (int i = oy + 1; i < 8; i++)
 	{
-		if (this->board[i][j] <= 0 && (regey == i && regex == j))
+		if (this->board[i][j] <= 0 && (desty == i && destx == j))
 		{
 			return 1;
 		}
@@ -1080,74 +1080,74 @@ int chessboard::Black_queen_check(int ox, int oy, int regex, int regey)
 	return 0;
 }
 
-int chessboard::Black_horse_check(int ox, int oy, int regex, int regey)
+int chessboard::Black_horse_check(int ox, int oy, int destx, int desty)
 {
-	if (oy - 2 >= 0 && ox - 1 >= 0 && regey == oy - 2 && regex == ox - 1 && this->board[regey][regex] <= 0)
+	if (oy - 2 >= 0 && ox - 1 >= 0 && desty == oy - 2 && destx == ox - 1 && this->board[desty][destx] <= 0)
 	{
 		return 1; // st sus
 	}
-	if (oy - 2 >= 0 && ox + 1 < 8 && regey == oy - 2 && regex == ox + 1 && this->board[regey][regex] <= 0)
+	if (oy - 2 >= 0 && ox + 1 < 8 && desty == oy - 2 && destx == ox + 1 && this->board[desty][destx] <= 0)
 	{
 		return 1; 
 	}
-	if (oy - 1 >= 0 && ox + 2 < 8 && regey == oy - 1 && regex == ox + 2 && this->board[regey][regex] <= 0)
+	if (oy - 1 >= 0 && ox + 2 < 8 && desty == oy - 1 && destx == ox + 2 && this->board[desty][destx] <= 0)
 	{
 		return 1; 
 	}
-	if (oy + 1 >= 0 && ox + 2 < 8 && regey == oy + 1 && regex == ox + 2 && this->board[regey][regex] <= 0)
+	if (oy + 1 >= 0 && ox + 2 < 8 && desty == oy + 1 && destx == ox + 2 && this->board[desty][destx] <= 0)
 	{
 		return 1; 
 	}
-	if (oy + 2 < 8 && ox + 1 < 8 && regey == oy + 2 && regex == ox + 1 && this->board[regey][regex] <= 0)
+	if (oy + 2 < 8 && ox + 1 < 8 && desty == oy + 2 && destx == ox + 1 && this->board[desty][destx] <= 0)
 	{
 		return 1; 
 	}
-	if (oy + 2 < 8 && ox - 1 >= 0 && regey == oy + 2 && regex == ox - 1 && this->board[regey][regex] <= 0)
+	if (oy + 2 < 8 && ox - 1 >= 0 && desty == oy + 2 && destx == ox - 1 && this->board[desty][destx] <= 0)
 	{
 		return 1; 
 	}
-	if (oy + 1 < 8 && ox - 2 >= 0 && regey == oy + 1 && regex == ox - 2 && this->board[regey][regex] <= 0)
+	if (oy + 1 < 8 && ox - 2 >= 0 && desty == oy + 1 && destx == ox - 2 && this->board[desty][destx] <= 0)
 	{
 		return 1; 
 	}
-	if (oy - 1 >= 0 && ox - 2 >= 0 && regey == oy - 1 && regex == ox - 2 && this->board[regey][regex] <= 0)
+	if (oy - 1 >= 0 && ox - 2 >= 0 && desty == oy - 1 && destx == ox - 2 && this->board[desty][destx] <= 0)
 	{
 		return 1;
 	}
 	return 0;
 }
 
-int chessboard::Black_king_check(int ox, int oy, int regex, int regey)
+int chessboard::Black_king_check(int ox, int oy, int destx, int desty)
 {
-	if (ox - 1 >= 0 && oy - 1 >= 0 && regey == oy - 1 && regex == ox - 1 && this->board[regey][regex] >= 0)
+	if (ox - 1 >= 0 && oy - 1 >= 0 && desty == oy - 1 && destx == ox - 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (oy - 1 >= 0 && regex == ox && regey == oy - 1 && this->board[regey][regex] >= 0)
+	if (oy - 1 >= 0 && destx == ox && desty == oy - 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (oy - 1 >= 0 && ox + 1 < 8 && regex == ox + 1 && regey == oy - 1 && this->board[regey][regex] >= 0)
+	if (oy - 1 >= 0 && ox + 1 < 8 && destx == ox + 1 && desty == oy - 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (ox + 1 < 8 && regey == oy && regex == ox + 1 && this->board[regey][regex] >= 0)
+	if (ox + 1 < 8 && desty == oy && destx == ox + 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (ox + 1 < 8 && oy + 1 < 8 && regey == oy + 1 && regex == ox + 1 && this->board[regey][regex] >= 0)
+	if (ox + 1 < 8 && oy + 1 < 8 && desty == oy + 1 && destx == ox + 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (oy + 1 < 8 && regey == oy + 1 && regex == ox && this->board[regey][regex] >= 0)
+	if (oy + 1 < 8 && desty == oy + 1 && destx == ox && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (ox - 1 >= 0 && oy + 1 < 8 && regex == ox - 1 && regey == oy + 1 && this->board[regey][regex] >= 0)
+	if (ox - 1 >= 0 && oy + 1 < 8 && destx == ox - 1 && desty == oy + 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
-	if (ox - 1 >= 0 && regey == oy && regex == ox - 1 && this->board[regey][regex] >= 0)
+	if (ox - 1 >= 0 && desty == oy && destx == ox - 1 && this->board[desty][destx] >= 0)
 	{
 		return 1;
 	}
@@ -1156,7 +1156,7 @@ int chessboard::Black_king_check(int ox, int oy, int regex, int regey)
 
 
 
-int chessboard::Black_king_ShahCheck(int posRegex, int posRegey)
+int chessboard::Black_king_ShahCheck(int posdestx, int posdesty)
 {
 	int ok = 0;
 	for (int i = 0; i < 8; i++)
@@ -1167,27 +1167,27 @@ int chessboard::Black_king_ShahCheck(int posRegex, int posRegey)
 			{
 				if (this->board[i][j] == -1)
 				{
-					ok=White_pawn_check(j, i, posRegex, posRegey);
+					ok=White_pawn_check(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == -2)
 				{
-					ok=White_rook_check(j, i, posRegex, posRegey);
+					ok=White_rook_check(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == -3)
 				{
-					ok=White_rook_check(j, i, posRegex, posRegey);
+					ok=White_rook_check(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == -4)
 				{
-					ok=White_elephant_check(j, i, posRegex, posRegey);
+					ok=White_elephant_check(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == -5)
 				{
-					ok=White_queen_check(j, i, posRegex, posRegey);
+					ok=White_queen_check(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == -6)
 				{
-					ok=White_king_check(j, i, posRegex, posRegey);
+					ok=White_king_check(j, i, posdestx, posdesty);
 				}
 				if (ok == 1)
 				{
@@ -1313,7 +1313,7 @@ int chessboard::Black_king(int ox, int oy, int nx, int ny)
 }
 
 
-int chessboard::King_WhiteShahCheck(int posRegex, int posRegey)
+int chessboard::King_WhiteShahCheck(int posdestx, int posdesty)
 {
 	int ok = 0;
 	for (int i = 0; i < 8; i++)
@@ -1324,27 +1324,27 @@ int chessboard::King_WhiteShahCheck(int posRegex, int posRegey)
 			{
 				if (this->board[i][j] == 1)
 				{
-					ok = Black_pawn_check(j, i, posRegex, posRegey);
+					ok = Black_pawn_check(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == 2)
 				{
-					ok = Black_RookShah(j, i, posRegex, posRegey);
+					ok = Black_RookShah(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == 3)
 				{
-					ok = Black_horse_check(j, i, posRegex, posRegey);
+					ok = Black_horse_check(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == 4)
 				{
-					ok = Black_ElephantShah(j, i, posRegex, posRegey);
+					ok = Black_ElephantShah(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == 5)
 				{
-					ok = Black_queen_check(j, i, posRegex, posRegey);
+					ok = Black_queen_check(j, i, posdestx, posdesty);
 				}
 				if (this->board[i][j] == 6)
 				{
-					ok=Black_king_check(j, i, posRegex, posRegey);
+					ok=Black_king_check(j, i, posdestx, posdesty);
 				}
 				if (ok == 1)
 				{

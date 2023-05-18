@@ -252,12 +252,12 @@ int main()
 						if (ok == 1 && Rook_WhiteStanga==0 && oldPoz.y == 7 && oldPoz.x == 0)
 						{
 							Rook_WhiteStanga = 1;
-							//std::cout << Rook_WhiteStanga << "\n";
+	
 						}
 						if (ok == 1 && Rook_WhiteDreapta==0 && oldPoz.y == 7 && oldPoz.x == 7)
 						{
 							Rook_WhiteDreapta = 1;
-							//std::cout << Rook_WhiteDreapta << "\n";
+	
 						}
 					}
 					if (figure_num == 2 && move == 1)
@@ -266,12 +266,12 @@ int main()
 						if (ok == 1 && Rook_BlackDreapta == 0 && oldPoz.y == 0 && oldPoz.x == 7)
 						{
 							Rook_BlackDreapta = 1;
-							//std::cout << Rook_BlackDreapta<< "\n";
+
 						}
 						if (ok == 1 && Rook_BlackStanga == 0 && oldPoz.y == 0 && oldPoz.x == 0)
 						{
 							Rook_BlackStanga = 1;
-							//std::cout << Rook_BlackStanga << "\n";
+	
 						}
 					}
 					if (figure_num == -4 && move == 1)
@@ -313,7 +313,7 @@ int main()
 						if (ok == 1 && King_White_ == 0)
 						{
 							King_White_ = 1;
-							//std::cout << "primafigureKing_White=" << King_White << "\n";
+						
 						}
 					}
 					if (ok == 1)
@@ -335,7 +335,7 @@ int main()
 							transformN.y = y;
 							cb.board[y][x] = 0;
 						}
-						if(figure==0) // Whiteul a mutat si urmeaza Blackl
+						if(figure==0) 
 						{
 							if (shahWhite == 1)
 							{
@@ -379,7 +379,7 @@ int main()
 								}
 							}
 						}
-						else // Blackl a mutat si urmeaza Whiteul
+						else 
 						{
 							if (shahBlack == 1)
 							{

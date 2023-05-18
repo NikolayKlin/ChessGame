@@ -4,20 +4,20 @@
 struct poz
 {
 	int x, y;
-}oldPoz, regeleAlb, regeleNegru, transformA, transformN;
+}oldPoz, controlWhite, controlBlack, transformA, transformN;
 
 chessboard cb;
 
 int move = 0;
 
-int turnAlbDreapta = 0, turnAlbStanga = 0, regeAlb = 0;
-int turnNegruDreapta = 0, turnNegruStanga = 0, regeNegru = 0;
+int Rook_WhiteDreapta = 0, Rook_WhiteStanga = 0, King_White_ = 0;
+int Rook_BlackDreapta = 0, Rook_BlackStanga = 0, King_Black_ = 0;
 
-int mutare = 0;
+int figure = 0;
 
-int sahAlb = 0, sahNegru = 0;
+int shahWhite = 0, shahBlack = 0;
 
-int transformareAlb = 0, transformareNegru = 0;
+int Transformate_White_ = 0, Transformate_Black_ = 0;
 
 
 int WhitePawn(int ox, int oy, int nx, int ny)
@@ -537,11 +537,11 @@ int Black_horse(int ox, int oy, int nx, int ny)
 	{
 		return 1;
 	}
-	if (oy - 2 >= 0 && ox + 1 < 8 && ny == oy - 2 && nx == ox + 1 && cb.board[ny][nx] <= 0)
+	if (oy - 2 >= 0 && ox + 1 <8 && ny == oy - 2 && nx == ox + 1 && cb.board[ny][nx] <= 0)
 	{
 		return 1;
 	}
-	if (oy - 1 >= 0 && ox + 2 < 8 && ny == oy - 1 && nx == ox + 2 && cb.board[ny][nx] <= 0)
+	if (oy - 1 >= 0 && ox + 2 < 8 && ny==oy-1 && nx==ox+2 && cb.board[ny][nx] <= 0)
 	{
 		return 1;
 	}
@@ -549,7 +549,7 @@ int Black_horse(int ox, int oy, int nx, int ny)
 	{
 		return 1;
 	}
-	if (oy + 2 < 8 && ox + 1 < 8 && ny == oy + 2 && nx == ox + 1 && cb.board[ny][nx] <= 0)
+	if (oy+2<8 && ox+1<8 && ny==oy+2 && nx==ox+1 && cb.board[ny][nx] <= 0)
 	{
 		return 1;
 	}
@@ -557,7 +557,7 @@ int Black_horse(int ox, int oy, int nx, int ny)
 	{
 		return 1;
 	}
-	if (oy + 1 < 8 && ox - 2 >= 0 && ny == oy + 1 && nx == ox - 2 && cb.board[ny][nx] <= 0)
+	if (oy+1<8 && ox-2>=0 && ny==oy+1 && nx==ox-2 && cb.board[ny][nx]<=0 )
 	{
 		return 1;
 	}
@@ -890,7 +890,7 @@ int Black_pawn_check(int ox, int oy, int regex, int regey)
 	return 0;
 }
 
-int TurnNSah(int ox, int oy, int regex, int regey)
+int TurnNShah(int ox, int oy, int regex, int regey)
 {
 	for (int i = ox - 1; i >= 0; i--)
 	{
@@ -939,7 +939,7 @@ int TurnNSah(int ox, int oy, int regex, int regey)
 	return 0;
 }
 
-int NebunNSah(int ox, int oy, int regex, int regey)
+int NebunNShah(int ox, int oy, int regex, int regey)
 {
 	int j = ox - 1;
 	for (int i = oy - 1; i >= 0; i--)
@@ -1173,7 +1173,7 @@ int Black_King_check(int ox, int oy, int regex, int regey)
 
 
 
-int Black_king_SahCheck(int posRegex, int posRegey)
+int Black_king_ShahCheck(int posRegex, int posRegey)
 {
 	int ok = 0;
 	for (int i = 0; i < 8; i++)
@@ -1220,7 +1220,7 @@ int RegeN(int ox, int oy, int nx, int ny)
 {
 	if (ox - 1 >= 0 && oy - 1 >= 0 && ny == oy - 1 && nx == ox - 1 && cb.board[ny][nx] <= 0)
 	{
-		int ok = Black_king_SahCheck(ox - 1, oy - 1);
+		int ok = Black_king_ShahCheck(ox - 1, oy - 1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1228,7 +1228,7 @@ int RegeN(int ox, int oy, int nx, int ny)
 	}
 	if (oy - 1 >= 0 && nx == ox && ny == oy-1 && cb.board[ny][nx] <= 0)
 	{
-		int ok = Black_king_SahCheck(ox, oy-1);
+		int ok = Black_king_ShahCheck(ox, oy-1);
 		if (ok == 1)
 		{
 			return 1;
@@ -1236,7 +1236,7 @@ int RegeN(int ox, int oy, int nx, int ny)
 	}
 	if (oy - 1 >= 0 && ox + 1 < 8 && nx == ox + 1 && ny == oy - 1 && cb.board[ny][nx] <= 0)
 	{
-		int ok = Black_king_SahCheck(ox+ 1, oy- 1);
+		int ok = Black_king_ShahCheck(ox+ 1, oy- 1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1244,7 +1244,7 @@ int RegeN(int ox, int oy, int nx, int ny)
 	}
 	if (ox + 1 < 8 && ny == oy && nx == ox+1 && cb.board[ny][nx] <= 0)
 	{
-		int ok = Black_king_SahCheck(ox+1, oy);
+		int ok = Black_king_ShahCheck(ox+1, oy);
 		if (ok == 1)
 		{
 			return 1;
@@ -1252,7 +1252,7 @@ int RegeN(int ox, int oy, int nx, int ny)
 	}
 	if (ox + 1 < 8 && oy + 1 < 8 && ny == oy + 1 && nx == ox + 1 && cb.board[ny][nx] <= 0)
 	{
-		int ok = Black_king_SahCheck(ox + 1, oy + 1);
+		int ok = Black_king_ShahCheck(ox + 1, oy + 1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1260,7 +1260,7 @@ int RegeN(int ox, int oy, int nx, int ny)
 	}
 	if (oy + 1 < 8 && ny == oy+1 && nx == ox && cb.board[ny][nx] <= 0)
 	{
-		int ok = Black_king_SahCheck(ox, oy+1);
+		int ok = Black_king_ShahCheck(ox, oy+1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1268,7 +1268,7 @@ int RegeN(int ox, int oy, int nx, int ny)
 	}
 	if (ox - 1 >=0 && oy + 1 <8 && nx == ox - 1 && ny == oy + 1 && cb.board[ny][nx] <= 0)
 	{
-		int ok = Black_king_SahCheck(ox-1, oy+ 1);
+		int ok = Black_king_ShahCheck(ox-1, oy+ 1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1276,25 +1276,25 @@ int RegeN(int ox, int oy, int nx, int ny)
 	}
 	if (ox - 1 >= 0 && ny == oy && nx == ox-1 && cb.board[ny][nx] <= 0)
 	{
-		int ok = Black_king_SahCheck(ox-1, oy);
+		int ok = Black_king_ShahCheck(ox-1, oy);
 		if (ok == 1)
 		{
 			return 1;
 		}
 	}
-	if (turnNegruDreapta==0 && regeNegru==0 && cb.board[0][5]==0 && cb.board[0][6]==0 && ny==0 && nx==6)
+	if (Rook_BlackDreapta==0 && King_Black_==0 && cb.board[0][5]==0 && cb.board[0][6]==0 && ny==0 && nx==6)
 	{
-		int ok = Black_king_SahCheck(4, 0);
+		int ok = Black_king_ShahCheck(4, 0);
 		if (ok == 1)
 		{
-			ok = Black_king_SahCheck(5, 0);
+			ok = Black_king_ShahCheck(5, 0);
 			if (ok == 1)
 			{
-				ok = Black_king_SahCheck(6, 0);
+				ok = Black_king_ShahCheck(6, 0);
 				if (ok == 1)
 				{
-					regeNegru = 1;
-					turnNegruDreapta = 1;
+					King_Black_ = 1;
+					Rook_BlackDreapta = 1;
 					cb.board[0][7] = 0;
 					cb.board[0][5] = 2;
 					return 1;
@@ -1302,22 +1302,22 @@ int RegeN(int ox, int oy, int nx, int ny)
 			}
 		}
 	}
-	if (turnNegruStanga == 0 && regeNegru == 0 && cb.board[0][3] == 0 && cb.board[0][2] == 0 && cb.board[0][1] == 0 && ny == 0 && nx == 2)
+	if (Rook_BlackStanga == 0 && King_Black_ == 0 && cb.board[0][3] == 0 && cb.board[0][2] == 0 && cb.board[0][1] == 0 && ny == 0 && nx == 2)
 	{
 		int ok = (4, 0);
 		if (ok == 1)
 		{
-			ok = Black_king_SahCheck(3, 0);
+			ok = Black_king_ShahCheck(3, 0);
 			if (ok == 1)
 			{
-				ok = Black_king_SahCheck(2, 0);
+				ok = Black_king_ShahCheck(2, 0);
 				if (ok == 1)
 				{
-					ok = Black_king_SahCheck(1, 0);
+					ok = Black_king_ShahCheck(1, 0);
 					if (ok == 1)
 					{
-						regeNegru = 1;
-						turnNegruStanga = 1;
+						King_Black_ = 1;
+						Rook_BlackStanga = 1;
 						cb.board[0][0] = 0;
 						cb.board[0][3] = 2;
 						return 1;
@@ -1330,7 +1330,7 @@ int RegeN(int ox, int oy, int nx, int ny)
 }
 
 
-int RegeAlbSahCheck(int posRegex, int posRegey)
+int King_WhiteShahCheck(int posRegex, int posRegey)
 {
 	int ok = 0;
 	for (int i = 0; i < 8; i++)
@@ -1345,7 +1345,7 @@ int RegeAlbSahCheck(int posRegex, int posRegey)
 				}
 				if (cb.board[i][j] == 2)
 				{
-					ok = TurnNSah(j, i, posRegex, posRegey);
+					ok = TurnNShah(j, i, posRegex, posRegey);
 				}
 				if (cb.board[i][j] == 3)
 				{
@@ -1353,7 +1353,7 @@ int RegeAlbSahCheck(int posRegex, int posRegey)
 				}
 				if (cb.board[i][j] == 4)
 				{
-					ok = NebunNSah(j, i, posRegex, posRegey);
+					ok = NebunNShah(j, i, posRegex, posRegey);
 				}
 				if (cb.board[i][j] == 5)
 				{
@@ -1377,7 +1377,7 @@ int RegeA(int ox, int oy, int nx, int ny)
 {
 	if (ox - 1 >= 0 && oy - 1 >= 0 && ny == oy - 1 && nx == ox - 1 && cb.board[ny][nx] >= 0)
 	{
-		int ok = RegeAlbSahCheck(ox - 1, oy - 1);
+		int ok = King_WhiteShahCheck(ox - 1, oy - 1);
 		if (ok == 1)
 		{
 			return 1;  
@@ -1385,7 +1385,7 @@ int RegeA(int ox, int oy, int nx, int ny)
 	}
 	if (oy - 1 >= 0 && nx == ox && ny == oy - 1 && cb.board[ny][nx] >= 0)
 	{
-		int ok = RegeAlbSahCheck(ox, oy - 1);
+		int ok = King_WhiteShahCheck(ox, oy - 1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1393,7 +1393,7 @@ int RegeA(int ox, int oy, int nx, int ny)
 	}
 	if (oy - 1 >= 0 && ox + 1 < 8 && nx == ox + 1 && ny == oy - 1 && cb.board[ny][nx] >= 0)
 	{
-		int ok = RegeAlbSahCheck(ox + 1, oy - 1);
+		int ok = King_WhiteShahCheck(ox + 1, oy - 1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1401,7 +1401,7 @@ int RegeA(int ox, int oy, int nx, int ny)
 	}
 	if (ox + 1 < 8 && ny == oy && nx == ox + 1 && cb.board[ny][nx] >= 0)
 	{
-		int ok = RegeAlbSahCheck(ox + 1, oy);
+		int ok = King_WhiteShahCheck(ox + 1, oy);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1409,7 +1409,7 @@ int RegeA(int ox, int oy, int nx, int ny)
 	}
 	if (ox + 1 < 8 && oy + 1 < 8 && ny == oy + 1 && nx == ox + 1 && cb.board[ny][nx] >= 0)
 	{
-		int ok = RegeAlbSahCheck(ox + 1, oy + 1);
+		int ok = King_WhiteShahCheck(ox + 1, oy + 1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1417,7 +1417,7 @@ int RegeA(int ox, int oy, int nx, int ny)
 	}
 	if (oy + 1 < 8 && ny == oy + 1 && nx == ox && cb.board[ny][nx] >= 0)
 	{
-		int ok = RegeAlbSahCheck(ox, oy + 1);
+		int ok = King_WhiteShahCheck(ox, oy + 1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1425,7 +1425,7 @@ int RegeA(int ox, int oy, int nx, int ny)
 	}
 	if (ox - 1 >= 0 && oy + 1 < 8 && nx == ox - 1 && ny == oy + 1 && cb.board[ny][nx] >= 0)
 	{
-		int ok = RegeAlbSahCheck(ox - 1, oy + 1);
+		int ok = King_WhiteShahCheck(ox - 1, oy + 1);
 		if (ok == 1)
 		{
 			return 1; 
@@ -1433,54 +1433,54 @@ int RegeA(int ox, int oy, int nx, int ny)
 	}
 	if (ox - 1 >= 0 && ny == oy && nx == ox - 1 && cb.board[ny][nx] >= 0)
 	{
-		int ok = RegeAlbSahCheck(ox - 1, oy);
+		int ok = King_WhiteShahCheck(ox - 1, oy);
 		if (ok == 1)
 		{
 			return 1; 
 		}
 	}
 	
-	if (regeAlb == 0 && turnAlbDreapta == 0 && cb.board[7][5] == 0 && cb.board[7][6] == 0 && ny==7 && nx==6)
+	if (King_White_ == 0 && Rook_WhiteDreapta == 0 && cb.board[7][5] == 0 && cb.board[7][6] == 0 && ny==7 && nx==6)
 	{
 		int ok = 1;
-		ok = RegeAlbSahCheck(4, 7);
+		ok = King_WhiteShahCheck(4, 7);
 		if (ok == 1)
 		{
-			ok = RegeAlbSahCheck(5, 7);
+			ok = King_WhiteShahCheck(5, 7);
 			if (ok == 1)
 			{
-				ok = RegeAlbSahCheck(6, 7);
+				ok = King_WhiteShahCheck(6, 7);
 				if (ok == 1)
 				{
 					cb.board[7][7] = 0;
 					cb.board[7][5] = -2;
-					regeAlb = 1;
-					turnAlbDreapta = 1;
+					King_White_ = 1;
+					Rook_WhiteDreapta = 1;
 					return 1;
 				}
 			}
 		}
 	}
 	// rocada in stanga
-	if (regeAlb == 0 && turnAlbDreapta == 0 && cb.board[7][3] == 0 && cb.board[7][2] == 0 && cb.board[7][1] == 0 && ny == 7 && nx == 2)
+	if (King_White_ == 0 && Rook_WhiteDreapta == 0 && cb.board[7][3] == 0 && cb.board[7][2] == 0 && cb.board[7][1] == 0 && ny == 7 && nx == 2)
 	{
 		int ok = 1;
-		ok = RegeAlbSahCheck(4, 7);
+		ok = King_WhiteShahCheck(4, 7);
 		if (ok == 1)
 		{
-			ok = RegeAlbSahCheck(3, 7);
+			ok = King_WhiteShahCheck(3, 7);
 			if (ok == 1)
 			{
-				ok = RegeAlbSahCheck(2, 7);
+				ok = King_WhiteShahCheck(2, 7);
 				if (ok == 1)
 				{
-					ok = RegeAlbSahCheck(1, 7);
+					ok = King_WhiteShahCheck(1, 7);
 					if (ok == 1)
 					{
 						cb.board[7][0] = 0;
 						cb.board[7][3] = -2;
-						regeAlb = 1;
-						turnAlbStanga = 1;
+						King_White_ = 1;
+						Rook_WhiteStanga = 1;
 						return 1;
 					}
 				}
@@ -1491,7 +1491,7 @@ int RegeA(int ox, int oy, int nx, int ny)
 }
 
 
-void pozRegeAlb()
+void pozKing_White()
 {
 	for (int i = 0; i < 8; i++)
 	{
@@ -1499,15 +1499,15 @@ void pozRegeAlb()
 		{
 			if (cb.board[i][j] == -6)
 			{
-				regeleAlb.x = j;
-				regeleAlb.y = i;
+				controlWhite.x = j;
+				controlWhite.y = i;
 				break;
 			}
 		}
 	}
 }
 
-void pozRegeNegru()
+void pozKing_Black()
 {
 	for (int i = 0; i < 8; i++)
 	{
@@ -1515,8 +1515,8 @@ void pozRegeNegru()
 		{
 			if (cb.board[i][j] == 6)
 			{
-				regeleNegru.y = i;
-				regeleNegru.x = j;
+				controlBlack.y = i;
+				controlBlack.x = j;
 				break;
 			}
 		}

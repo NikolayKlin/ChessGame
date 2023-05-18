@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
+
 int main()
 {
 	RenderWindow window(VideoMode(800, 800), "chess game");
@@ -94,8 +95,8 @@ int main()
 							}
 							if (Transformate_White_ == 0)
 							{
-								pozKing_Black();
-								int h = Black_king_ShahCheck(controlBlack.x, controlBlack.y);
+								cb.posKing_Black();
+								int h = cb.Black_king_ShahCheck(controlBlack.x, controlBlack.y);
 								if (h == 0)
 								{
 									shahBlack = 1;
@@ -137,8 +138,8 @@ int main()
 							if (Transformate_Black_
 					 == 0)
 							{
-								pozKing_White();
-								int h = King_WhiteShahCheck(controlWhite.x, controlWhite.y);
+								cb.posKing_White();
+								int h = cb.King_WhiteShahCheck(controlWhite.x, controlWhite.y);
 								if (h == 0)
 								{
 									shahWhite = 1;
@@ -227,8 +228,8 @@ int main()
 						if (cb.board[y][x] == 0)
 						{
 							move = 1;
-							oldPoz.x = x;
-							oldPoz.y = y;
+							oldPos.x = x;
+							oldPos.y = y;
 						}
 					}
 				}
@@ -240,67 +241,67 @@ int main()
 					int ok=2;
 					if (figure_num == -1 && move==1)
 					{
-						 ok = WhitePawn(oldPoz.x, oldPoz.y, x, y);
+						 ok = cb.WhitePawn(oldPos.x, oldPos.y, x, y);
 					}
 					if (figure_num == 1 && move == 1)
 					{
-						ok = BlackPawn(oldPoz.x, oldPoz.y, x, y);
+						ok = cb.BlackPawn(oldPos.x, oldPos.y, x, y);
 					}
 					if (figure_num == -2 && move == 1)
 					{
-						ok = White_move(oldPoz.x, oldPoz.y, x, y);
-						if (ok == 1 && Rook_WhiteStanga==0 && oldPoz.y == 7 && oldPoz.x == 0)
+						ok = cb.White_move(oldPos.x, oldPos.y, x, y);
+						if (ok == 1 && Rook_WhiteSt==0 && oldPos.y == 7 && oldPos.x == 0)
 						{
-							Rook_WhiteStanga = 1;
+							Rook_WhiteSt = 1;
 	
 						}
-						if (ok == 1 && Rook_WhiteDreapta==0 && oldPoz.y == 7 && oldPoz.x == 7)
+						if (ok == 1 && Rook_WhiteD==0 && oldPos.y == 7 && oldPos.x == 7)
 						{
-							Rook_WhiteDreapta = 1;
+							Rook_WhiteD = 1;
 	
 						}
 					}
 					if (figure_num == 2 && move == 1)
 					{
-						ok=Black_move(oldPoz.x, oldPoz.y, x, y);
-						if (ok == 1 && Rook_BlackDreapta == 0 && oldPoz.y == 0 && oldPoz.x == 7)
+						ok=cb.Black_move(oldPos.x, oldPos.y, x, y);
+						if (ok == 1 && Rook_BlackD == 0 && oldPos.y == 0 && oldPos.x == 7)
 						{
-							Rook_BlackDreapta = 1;
+							Rook_BlackD = 1;
 
 						}
-						if (ok == 1 && Rook_BlackStanga == 0 && oldPoz.y == 0 && oldPoz.x == 0)
+						if (ok == 1 && Rook_BlackSt == 0 && oldPos.y == 0 && oldPos.x == 0)
 						{
-							Rook_BlackStanga = 1;
+							Rook_BlackSt = 1;
 	
 						}
 					}
 					if (figure_num == -4 && move == 1)
 					{
-						ok = White_horse(oldPoz.x, oldPoz.y, x, y);
+						ok = cb.White_horse(oldPos.x, oldPos.y, x, y);
 					}
 					if (figure_num == 4 && move == 1)
 					{
-						ok = Black_horse(oldPoz.x, oldPoz.y, x, y);
+						ok = cb.Black_horse(oldPos.x, oldPos.y, x, y);
 					}
 					if (figure_num == -5 && move == 1)
 					{
-						ok = White_queen(oldPoz.x, oldPoz.y, x, y);
+						ok = cb.White_queen(oldPos.x, oldPos.y, x, y);
 					}
 					if (figure_num == 5 && move == 1)
 					{
-						ok = Black_queen(oldPoz.x, oldPoz.y, x, y);
+						ok = cb.Black_queen(oldPos.x, oldPos.y, x, y);
 					}
 					if (figure_num == -3 && move == 1)
 					{
-						ok = White_horse(oldPoz.x, oldPoz.y, x, y);
+						ok = cb.White_horse(oldPos.x, oldPos.y, x, y);
 					}
 					if (figure_num == 3 && move == 1)
 					{
-						ok = Black_elephant(oldPoz.x, oldPoz.y, x, y);
+						ok = cb.Black_elephant(oldPos.x, oldPos.y, x, y);
 					}
 					if (figure_num == 3 && move == 1)
 					{
-						ok = RegeN(oldPoz.x, oldPoz.y, x, y);
+						ok = cb.Black_king(oldPos.x, oldPos.y, x, y);
 						if (ok == 1 && King_Black_ == 0)
 						{
 							King_Black_ = 1;
@@ -309,7 +310,7 @@ int main()
 					}
 					if (figure_num == -6 && move == 1)
 					{
-						ok = RegeA(oldPoz.x, oldPoz.y, x, y);
+						ok = cb.White_king(oldPos.x, oldPos.y, x, y);
 						if (ok == 1 && King_White_ == 0)
 						{
 							King_White_ = 1;
@@ -339,18 +340,18 @@ int main()
 						{
 							if (shahWhite == 1)
 							{
-								pozKing_White();
-								int s = King_WhiteShahCheck(controlWhite.x, controlWhite.y);
+								cb.posKing_White();
+								int s = cb.King_WhiteShahCheck(controlWhite.x, controlWhite.y);
 								if (s == 0)
 								{
-									cb.board[oldPoz.y][oldPoz.x] = figure_num;
+									cb.board[oldPos.y][oldPos.x] = figure_num;
 									cb.board[y][x] = nr;
 								}
 								else
 								{
 									shahWhite = 0;
-									pozKing_Black();
-									int shah = Black_king_ShahCheck(controlBlack.x,controlBlack.y);
+									cb.posKing_Black();
+									int shah = cb.Black_king_ShahCheck(controlBlack.x,controlBlack.y);
 									if (shah == 0)
 									{
 										shahBlack = 1;
@@ -360,17 +361,17 @@ int main()
 							}
 							else
 							{
-								pozKing_White();
-								int sa = King_WhiteShahCheck(controlWhite.x, controlWhite.y);
+								cb.posKing_White();
+								int sa = cb.King_WhiteShahCheck(controlWhite.x, controlWhite.y);
 								if (sa == 0)
 								{
-									cb.board[oldPoz.y][oldPoz.x] = figure_num;
+									cb.board[oldPos.y][oldPos.x] = figure_num;
 									cb.board[y][x] = nr;
 								}
 								else
 								{
-									pozKing_Black();
-									int shah = Black_king_ShahCheck(controlBlack.x, controlBlack.y);
+									cb.posKing_Black();
+									int shah = cb.Black_king_ShahCheck(controlBlack.x, controlBlack.y);
 									if (shah == 0)
 									{
 										shahBlack = 1;
@@ -383,18 +384,18 @@ int main()
 						{
 							if (shahBlack == 1)
 							{
-								pozKing_Black();
-								int s = Black_king_ShahCheck(controlBlack.x,controlBlack.y);
+								cb.posKing_Black();
+								int s = cb.Black_king_ShahCheck(controlBlack.x,controlBlack.y);
 								if (s == 0)
 								{
-									cb.board[oldPoz.y][oldPoz.x] = figure_num;
+									cb.board[oldPos.y][oldPos.x] = figure_num;
 									cb.board[y][x] = nr;
 								}
 								else
 								{
 									shahBlack = 0;
-									pozKing_White();
-									int shah = King_WhiteShahCheck(controlWhite.x,controlWhite.y);
+									cb.posKing_White();
+									int shah = cb.King_WhiteShahCheck(controlWhite.x,controlWhite.y);
 									if (shah == 0)
 									{
 										shahWhite = 1;
@@ -404,17 +405,17 @@ int main()
 							}
 							else
 							{
-								pozKing_Black();
-								int sa = Black_king_ShahCheck(controlBlack.x, controlBlack.y);
+								cb.posKing_Black();
+								int sa = cb.Black_king_ShahCheck(controlBlack.x, controlBlack.y);
 								if (sa == 0)
 								{
-									cb.board[oldPoz.y][oldPoz.x] = figure_num;
+									cb.board[oldPos.y][oldPos.x] = figure_num;
 									cb.board[y][x] = nr;
 								}
 								else
 								{
-									pozKing_White();
-									int shah = King_WhiteShahCheck(controlWhite.x, controlWhite.y);
+									cb.posKing_White();
+									int shah = cb.King_WhiteShahCheck(controlWhite.x, controlWhite.y);
 									if (shah == 0)
 									{
 										shahWhite = 1;
@@ -426,7 +427,7 @@ int main()
 					}
 					else if(ok==0)
 					{
-						cb.board[oldPoz.y][oldPoz.x] = figure_num;
+						cb.board[oldPos.y][oldPos.x] = figure_num;
 					}
                    move = 0;
 				}
